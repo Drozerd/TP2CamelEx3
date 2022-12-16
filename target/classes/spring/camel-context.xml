@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       https://camel.apache.org/schema/spring/camel-spring-2.23.3.xsd">
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <route id="_route1">
+            <from id="_to3" uri="file:C:/inputFolder?noop=true"/>
+            <choice id="_choice1">
+                <when id="_when1">
+                    <xpath>//service[contains (@maj,'2017')]</xpath>
+                    <to id="_to4" uri="file:C:/2017"/>
+                    <choice id="_choice2">
+                        <when id="_when2">
+                            <xpath>//ville='Paris'</xpath>
+                            <to id="_to5" uri="file:C:/Paris"/>
+                        </when>
+                        <when id="_when5">
+                            <xpath>//ville='Lyon'</xpath>
+                            <to id="_to8" uri="file:C:/Lyon"/>
+                        </when>
+                    </choice>
+                </when>
+            </choice>
+        </route>
+    </camelContext>
+</beans>
